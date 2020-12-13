@@ -1,0 +1,108 @@
+<%- include ("../template/header") -%>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Sửa sách</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Nhập dữ liệu
+                    </div>
+                    <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form action="/book/edit/<%= data._id.toString() %>" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label>Tên sách:</label>
+                                            <input type="text" class="form-control" value="<%= data.title %>"  name="title" placeholder="Nhập tên sách mới">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Giá:</label>
+                                            <input type="text" class="form-control" value="<%= data.price %>"  name="price" placeholder="Nhập giá mới">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Số lượng:</label>
+                                            <input type="text" class="form-control" value="<%= data.quantity %>"  name="quantity" placeholder="Nhập số lượng mới">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Thể loại:</label>
+                                            <input type="text" class="form-control" value="<%= data.category %>"  name="category" placeholder="Nhập thể loại">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mô tả:</label>
+                                            <textarea name="description"     class="form-control" rows="5"><%= data.description %></textarea>    
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="form-group floating-label-form-group controls">
+                                                <label>Image</label>
+                                                <input type="file" class="form-control" id='imgURL' name='imgURL'>
+                                            </div>   
+                                        </div>
+                                        <div class="form-group">
+                                            <input  type="hidden" class="form-control" value="<%= data._id %>" name="id">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                    
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                       
+                        </form>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+            <!-- /.col-lg-12 -->
+        </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+    <script src="/javascripts/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/javascripts/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="/javascripts/metisMenu.min.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="/javascripts/dataTables/jquery.dataTables.min.js"></script>
+        <script src="/javascripts/dataTables/dataTables.bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/javascripts/startmin.js"></script>
+
+      <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+      <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                    responsive: true
+            });
+        });
+    </script>
+
+    </body>
+</html>
