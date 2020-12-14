@@ -21,14 +21,25 @@ const Product = (props) => {
 
   const [book, setBook] = useState([]);
   const [pagination, setPagination] = useState({ page: 1 });
+  const [bookInit, setBookInit] = useState([]);
 
   useEffect(() => {
+    console.log("-----", pagination.page);
     axios
-      .get(`http://localhost:5000/api/book/${props.category}`)
+      .get(`http://localhost:5000/api/book/page/${pagination.page}`)
       .then((res) => {
         setBook(res.data);
+        setBookInit(res.data);
       });
-  }, [props]);
+  }, [pagination.page]);
+
+  useEffect(() => {
+    console.log(props.category);
+    const newList = bookInit.filter((item) => {
+      return item.category == props.category;
+    });
+    setBook(newList);
+  }, [props.category]);
 
   function addToCart(product) {
     if (user != null) {
@@ -43,7 +54,8 @@ const Product = (props) => {
   }
 
   const changePage = (newPage) => {
-    setPagination(newPage);
+    const number = newPage;
+    setPagination({ page: number });
   };
 
   return (

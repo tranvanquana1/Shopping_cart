@@ -27,10 +27,12 @@ router.post("/login", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const { username, password } = req.body;
-  User.create(req.body)
-    .then((user) => res.send(user))
-    .catch((err) => console.error(err));
+  const { username, name, password } = req.body;
+  bcrypt.hash(password, 10).then((hash) => {
+    User.create({ username: username, name: name, password: hash })
+      .then((user) => res.json(user))
+      .catch((err) => console.error(err));
+  });
 });
 
 router.post("/edit/:id", (req, res, next) => {
@@ -43,7 +45,7 @@ router.post("/edit/:id", (req, res, next) => {
         password: hash,
       })
         .then((user) => {
-          res.send(user);
+          res.json(user);
         })
         .catch((err) => {
           console.error(err);

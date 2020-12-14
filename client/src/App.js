@@ -15,6 +15,7 @@ import Favorite from "./components/pages/favorite";
 import Shop from "./components/pages/shop";
 import Detail from "./components/pages/detail";
 import Login from "./components/pages/login";
+import CreateUser from "./components/pages/createUser";
 import { useContext } from "react";
 
 function App(props) {
@@ -34,6 +35,9 @@ function App(props) {
             {user ? <Detail /> : <Redirect to="/" />}
           </Route>
           <Route path="/cart/">{user ? <Shop /> : <Redirect to="/" />}</Route>
+          <Route path="/newuser/">
+            {user ? <Redirect to="/" /> : <CreateUser />}
+          </Route>
           <Route path="/user/">{user ? <Redirect to="/" /> : <Login />}</Route>
         </Switch>
         <Footer />

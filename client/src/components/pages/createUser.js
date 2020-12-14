@@ -12,28 +12,37 @@ import {
 import { ProductContext } from "../context/productsContext";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-const Login = (props) => {
+const CreateUser = (props) => {
   const { cart, setCart, favorite, setFavorite, user, setUser } = useContext(
     ProductContext
   );
 
-  const [users, setUsers] = useState({ username: "", password: "" });
+  const [users, setUsers] = useState({ username: "", name: "", password: "" });
 
   const handleUserChange = (e) => {
     e.preventDefault();
     setUsers({ ...users, username: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    e.preventDefault();
+    setUsers({ ...users, name: e.target.value });
+    console.log(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     e.preventDefault();
     setUsers({ ...users, password: e.target.value });
+    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const detail = users;
-    Axios.post(`http://localhost:5000/api/user/login`, detail).then((res) => {
-      setUser(res.data.user);
+    Axios.post(`http://localhost:5000/api/user/`, detail).then((res) => {
+      const newUser = res.data;
+      setUser(res.data);
     });
   };
 
@@ -43,7 +52,7 @@ const Login = (props) => {
 
   return (
     <div style={{ padding: "120px 0", textAlign: "center" }}>
-      <CardTitle tag="h2">LOGIN</CardTitle>
+      <CardTitle tag="h2">New User</CardTitle>
       <Form
         action="/"
         method="GET"
@@ -76,7 +85,21 @@ const Login = (props) => {
             onChange={handleUserChange}
           />
         </FormGroup>
-        <br />
+        <FormGroup>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            style={{
+              border: "none",
+              borderRadius: "10px",
+              backgroundColor: "#f0f0f0",
+              height: "50px",
+            }}
+            onChange={handleNameChange}
+          />
+        </FormGroup>
         <FormGroup>
           <Input
             type="password"
@@ -92,27 +115,21 @@ const Login = (props) => {
             onChange={handlePasswordChange}
           />
         </FormGroup>
-        <br />
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" /> Remember password
-          </Label>
-        </FormGroup>
-        <br />
+
         <Button type="submit" color="danger" style={{ width: "100%" }}>
-          Login
+          Create
         </Button>
         <div style={{ marginTop: "20px" }}>
           <CardText>or</CardText>
           <Link
-            to="/newuser"
+            to="/user"
             style={{
               textDecoration: "none",
               color: "black",
               fontStyle: "inherit",
             }}
           >
-            Create user.
+            Have user.
           </Link>
         </div>
       </Form>
@@ -120,4 +137,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default CreateUser;

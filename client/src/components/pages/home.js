@@ -32,7 +32,6 @@ const Home = (props) => {
           <CardImg
             src={trendBook}
             style={{ height: "100%", padding: "16px 0px" }}
-            onClick={() => filterProduct("")}
           ></CardImg>
           <div
             style={{

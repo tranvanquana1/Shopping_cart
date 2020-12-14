@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 const Pagi = (props) => {
   const { onPageChange } = props;
   const changePage = (newPage) => {
-    if (onPageChange) {
-      onPageChange(newPage);
-    }
+    onPageChange(newPage);
   };
   return (
     <Pagination

@@ -18,19 +18,19 @@ const UserSchema = new Schema({
   },
   dateOfBirth: {
     type: String,
-    require: true,
+    default: "130199",
   },
   sex: {
     type: String,
-    required: true,
+    default: "LGBT",
   },
   phone: {
     type: String,
-    required: true,
+    default: "123456789",
   },
   address: {
     type: String,
-    required: true,
+    default: "Ha Nam",
   },
   createDate: {
     type: Date,
